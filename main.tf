@@ -100,10 +100,5 @@ resource "aws_instance" "web" {
 # --- S3 Bucket ---
 resource "aws_s3_bucket" "data" {
   bucket = var.s3_bucket_name
-}
-
-# --- S3 Bucket ACL (fix deprecated warning) ---
-resource "aws_s3_bucket_acl" "data_acl" {
-  bucket = aws_s3_bucket.data.id
   acl    = "private"
 }
