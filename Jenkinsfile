@@ -9,7 +9,10 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            steps { git branch: 'main', url: 'https://w53434129-cmyk/terraform-aws-cicd-demo.git' }
+            steps { git branch: 'main',
+                    url: 'https://github.com/w53434129-cmyk/terraform-aws-cicd-demo.git',
+                    credentialsId: 'github'    // GitHub PAT credential 
+        }
         }
 
         stage('Terraform Init') {
