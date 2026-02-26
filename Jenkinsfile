@@ -3,8 +3,8 @@ pipeline {
 
     environment {
         AWS_REGION = 'us-east-1'
-        AWS_ACCESS_KEY_ID = credentials('aws-terraform')
-        AWS_SECRET_ACCESS_KEY = credentials('aws-terraform')
+        AWS_ACCESS_KEY_ID = credentials('terrafomr')
+        AWS_SECRET_ACCESS_KEY = credentials('terrafomr')
     }
 
     stages {
