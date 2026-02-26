@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        AWS_REGION = 'us-east-1' // safe to hardcode
+        AWS_REGION = 'us-east-1' 
     }
 
     stages {
@@ -23,6 +23,36 @@ pipeline {
                     sh 'terraform init'
                 }
             }
+        }
+
+        // Terraform Validate
+        stage('Terraform Validate') {
+            steps {
+                sh 'terraform validate'
+            }
+        }
+
+        // Terraform Plan
+        stage('Terraform Plan') {
+            steps {
+                sh 'terraform plan -out=tfplan'
+            }
+        }
+
+        // Terraform Apply
+        stage('Terraform Apply') {
+            steps {
+                sh 'terraform apply -auto-approve tfplan'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Terraform pipeline completed successfully!'
+        }
+        failure {
+            echo 'Terraform pipeline failed.'
         }
     }
 }
