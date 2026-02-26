@@ -105,4 +105,5 @@ resource "aws_s3_bucket" "data" {
 # --- S3 Bucket ACL (fix deprecated warning) ---
 resource "aws_s3_bucket_acl" "data_acl" {
   bucket = aws_s3_bucket.data.id
+  acl    = "private"
 }
